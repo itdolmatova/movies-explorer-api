@@ -3,8 +3,7 @@ const isEmail = require('validator/lib/isEmail');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-//const { RegExpForLink } = require('../utils/RegExpForLink');
-//const { WrongEmailOrPasswordError } = require('../errors/wrong-email-or-password-error');
+const { WrongEmailOrPasswordError } = require('../errors/wrong-email-or-password-error');
 
 const userSchema = new mongoose.Schema({
   email: {

@@ -27,7 +27,7 @@ const allowedCors = [
 
 console.log('Environment', process.env.NODE_ENV);
 
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
+mongoose.connect('mongodb://127.0.0.1:27017/moviesdb')
   .then(() => console.log('Database Connected'), {
     autoIndex: true,
   })

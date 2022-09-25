@@ -1,3 +1,3 @@
-const RegExpForRuName = /[а-яё0-9]\s/i;
+const RegExpForRuName = /[а-яА-ЯёЁ0-9 !&$#@?+\-()]+/i;
 
 module.exports.RegExpForRuName = RegExpForRuName;

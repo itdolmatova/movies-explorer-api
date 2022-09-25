@@ -4,7 +4,7 @@ const RegExpForLink = require('../utils/RegExpForLink');
 const RegExpForRuName = require('../utils/RegExpForRuName');
 const RegExpForEngName = require('../utils/RegExpForEngName');
 
-const cardSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema({
   country: {
     type: String,
     required: true,
@@ -26,13 +26,6 @@ const cardSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String,
-    required: true,
-    validate: {
-      validator: (value) => value.match(RegExpForLink),
-    },
-  },
-  link: {
     type: String,
     required: true,
     validate: {
