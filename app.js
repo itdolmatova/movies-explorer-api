@@ -4,19 +4,18 @@ const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
 const bodyParser = require('body-parser');
 
-/*
 const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
+// const cardsRouter = require('./routes/cards');
 const {
   createUser, login,
 } = require('./controllers/users');
+/*
 const { RegExpForLink } = require('./utils/RegExpForLink');
 const { NotFoundError } = require('./errors/not-found-error');
-
-const auth = require('./middlewares/auth');*/
+*/
+const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-/*
 const { PORT = 3000 } = process.env;
 const app = express();
 const allowedCors = [
@@ -55,14 +54,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
-*/
 app.use(requestLogger);
-
-/*app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -74,8 +66,6 @@ app.post('/signin', celebrate({
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().uri().pattern(RegExpForLink),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
@@ -83,13 +73,13 @@ app.post('/signup', celebrate({
 
 app.use(auth);
 app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
+//app.use('/cards', cardsRouter);
 app.use((req, res, next) => {
   next(new NotFoundError('Некорректный роут'));
-});*/
+});
 
 app.use(errorLogger);
-/*app.use(errors()); // обработчик ошибок celebrate
+app.use(errors()); // обработчик ошибок celebrate
 app.use((err, req, res, next) => {
   // если у ошибки нет статуса, выставляем 500
   const { statusCode = 500, message } = err;
@@ -108,4 +98,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
-*/
