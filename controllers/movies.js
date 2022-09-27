@@ -48,7 +48,7 @@ module.exports.createMovie = (req, res, next) => {
   })
     .then((movie) => Movie.populate(movie, { path: 'owner' }))
     .then((movie) => res.send(extractMovie(movie)))
-    .catch((err) => {console.log(err);
+    .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new WrongDataError('Переданы некорректные данные при создании карточки.'));
       } else {
@@ -58,7 +58,7 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({owner: req.user._id})
+  Movie.find({ owner: req.user._id })
     .populate(['owner'])
     .then((movies) => res.send(movies.map((movie) => extractMovie(movie))))
     .catch(next);
