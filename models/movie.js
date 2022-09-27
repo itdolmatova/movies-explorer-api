@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const RegExpForLink = require('../utils/RegExpForLink');
-const RegExpForRuName = require('../utils/RegExpForRuName');
-const RegExpForEngName = require('../utils/RegExpForEngName');
+const { RegExpForLink } = require('../utils/RegExpForLink');
+const { RegExpForRuName } = require('../utils/RegExpForRuName');
+const { RegExpForEngName } = require('../utils/RegExpForEnName');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -62,7 +62,7 @@ const movieSchema = new mongoose.Schema({
       validator: (value) => value.match(RegExpForRuName),
     },
   },
-  nameENG: {
+  nameEN: {
     type: String,
     required: true,
     validate: {
