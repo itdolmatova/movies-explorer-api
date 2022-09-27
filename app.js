@@ -14,6 +14,8 @@ const { NotFoundError } = require('./errors/not-found-error');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+console.log('Environment', process.env.NODE_ENV);
+
 const { PORT = 3000 } = process.env;
 const app = express();
 const allowedCors = [
@@ -22,9 +24,8 @@ const allowedCors = [
   'http://localhost:3000',
 ];
 
-console.log('Environment', process.env.NODE_ENV);
-
-mongoose.connect('mongodb://127.0.0.1:27017/moviesdb')
+const { MONGO_URI = 'mongodb://127.0.0.1:27017/moviesdb' } = process.env;
+mongoose.connect(MONGO_URI)
   .then(() => console.log('Database Connected'), {
     autoIndex: true,
   })
