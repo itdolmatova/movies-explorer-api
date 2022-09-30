@@ -45,19 +45,10 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
   const { name, email } = req.body;
-  let data;
-  if (name && email) {
-    data = { name, email };
-  } else if (name) {
-    data = { name };
-  } else if (email) {
-    data = { email };
-  } else {
-    throw new WrongDataError('Переданы некорректные данные при обновлении профиля.');
-  }
-  User.findByIdAndUpdate(
+
+  return User.findByIdAndUpdate(
     req.user._id,
-    data,
+    { name, email },
     // Передадим объект опций:
     {
       new: true, // обработчик then получит на вход обновлённую запись
