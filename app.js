@@ -1,14 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const { celebrate, Joi, errors } = require('celebrate');
+const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 
+const signRouter = require('./routes/sign');
 const usersRouter = require('./routes/users');
 const moviesRouter = require('./routes/movies');
-const {
-  createUser, login,
-} = require('./controllers/users');
+
 const { NotFoundError } = require('./errors/not-found-error');
 
 const auth = require('./middlewares/auth');
@@ -55,24 +54,10 @@ app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 app.use(requestLogger);
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
-
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), createUser);
-
+app.use(signRouter);
 app.use(auth);
-app.use('/users', usersRouter);
-app.use('/movies', moviesRouter);
+app.use(usersRouter);
+app.use(moviesRouter);
 app.use((req, res, next) => {
   next(new NotFoundError('Некорректный роут'));
 });
