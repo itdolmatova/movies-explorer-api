@@ -7,7 +7,7 @@ const { RegExpForLink } = require('../utils/RegExpForLink');
 const { RegExpForEnName } = require('../utils/RegExpForEnName');
 const { RegExpForRuName } = require('../utils/RegExpForRuName');
 
-router.post('', celebrate({
+router.post('/movies', celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
