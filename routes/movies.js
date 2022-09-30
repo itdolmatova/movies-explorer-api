@@ -15,19 +15,19 @@ router.post('', celebrate({
     year: Joi.string().required(),
     description: Joi.string().required(),
     image: Joi.string().uri().pattern(RegExpForLink).required(),
-    trailer: Joi.string().uri().pattern(RegExpForLink).required(),
+    trailerLink: Joi.string().uri().pattern(RegExpForLink).required(),
     nameRU: Joi.string().pattern(RegExpForRuName).required(),
     nameEN: Joi.string().pattern(RegExpForEnName).required(),
     thumbnail: Joi.string().uri().pattern(RegExpForLink).required(),
-    movieId: Joi.string().required(),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 
-router.get('', getMovies);
+router.get('/movies', getMovies);
 
-router.delete('/:id', celebrate({
+router.delete('/movies/:id', celebrate({
   params: Joi.object().keys({
-    id: Joi.string().required(),
+    id: Joi.string().hex().length(24).required(),
   }),
 }), deleteMovieById);
 

@@ -17,7 +17,7 @@ const extractMovie = (movie) => {
     year,
     description,
     image,
-    trailer: trailerLink,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -28,7 +28,7 @@ const extractMovie = (movie) => {
 
 module.exports.createMovie = (req, res, next) => {
   const {
-    country, director, duration, year, description, image, trailer,
+    country, director, duration, year, description, image, trailerLink,
     nameRU, nameEN, thumbnail, movieId,
   } = req.body;
 
@@ -43,7 +43,7 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
     movieId,
-    trailerLink: trailer,
+    trailerLink,
     owner: req.user._id,
   })
     .then((movie) => Movie.populate(movie, { path: 'owner' }))
