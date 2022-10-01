@@ -4,14 +4,10 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 
-const signRouter = require('./routes/sign');
-const usersRouter = require('./routes/users');
-const moviesRouter = require('./routes/movies');
+const { mainRouter } = require('./routes/index');
 
 const { errorHandler } = require('./errors/errorHandler');
 const { NotFoundError } = require('./errors/not-found-error');
-
-const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 console.log('Environment', process.env.NODE_ENV);
@@ -55,10 +51,7 @@ app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 app.use(requestLogger);
 
-app.use(signRouter);
-app.use(auth);
-app.use(usersRouter);
-app.use(moviesRouter);
+app.use(mainRouter);
 app.use((req, res, next) => {
   next(new NotFoundError('Некорректный роут'));
 });
