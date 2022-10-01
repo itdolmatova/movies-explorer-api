@@ -46,7 +46,6 @@ module.exports.createMovie = (req, res, next) => {
     trailerLink,
     owner: req.user._id,
   })
-    .then((movie) => Movie.populate(movie, { path: 'owner' }))
     .then((movie) => res.send(extractMovie(movie)))
     .catch((err) => {
       if (err.name === 'ValidationError') {
