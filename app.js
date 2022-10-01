@@ -8,6 +8,7 @@ const signRouter = require('./routes/sign');
 const usersRouter = require('./routes/users');
 const moviesRouter = require('./routes/movies');
 
+const { errorHandler } = require('./errors/errorHandler');
 const { NotFoundError } = require('./errors/not-found-error');
 
 const auth = require('./middlewares/auth');
@@ -64,20 +65,7 @@ app.use((req, res, next) => {
 
 app.use(errorLogger);
 app.use(errors()); // обработчик ошибок celebrate
-app.use((err, req, res, next) => {
-  // если у ошибки нет статуса, выставляем 500
-  const { statusCode = 500, message } = err;
-  res
-    .status(statusCode)
-    .send({
-      // проверяем статус и выставляем сообщение в зависимости от него
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-
-  next();
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

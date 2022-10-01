@@ -61,6 +61,8 @@ module.exports.updateUser = (req, res, next) => {
   }).catch((err) => {
     if (err.name === 'ValidationError') {
       next(new WrongDataError('Переданы некорректные данные при обновлении профиля.'));
+    } else if (err.code === 11000) {
+      next(new EmailAlreadyExistError('Пользователь с таким email уже существует'));
     } else {
       next(err);
     }
