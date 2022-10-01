@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { WrongEmailOrPasswordError } = require('../../react-mesto-api-full/backend/errors/wrong-email-or-password-error');
+const { WrongEmailOrPasswordError } = require('../errors/wrong-email-or-password-error');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
