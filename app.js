@@ -17,6 +17,8 @@ const app = express();
 const allowedCors = [
   'https://place4orthebeauty.dolmatova.nomoredomains.sbs',
   'http://place4orthebeauty.dolmatova.nomoredomains.sbs',
+  'https://movies.itdolmatova.nomorepartiesxyz.ru',
+  'http://movies.itdolmatova.nomorepartiesxyz.ru',
   'http://localhost:3000',
 ];
 
