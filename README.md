@@ -1,1 +1,8 @@
-# movies-explorer-api
+# Репозиторий movies-explorer-api, хранящий API для взаимодействия с бэкэнд-частью приложения по просмотру фильмов
+
+
+## Ссылки
+
+Текущая версия api опубликована по адресу:
+https://api.movies.itdolmatova.nomorepartiesxyz.ru
+IP-адрес сервера: 158.160.9.127
